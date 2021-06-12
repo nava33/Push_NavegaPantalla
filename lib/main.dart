@@ -2,32 +2,26 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Demostración de rutas nombradas',
-    // Inicie la aplicación con la ruta con nombre. En nuestro caso, la aplicación comenzará
-    // en el Widget PrimeraPantalla
-    initialRoute: '/',
-    routes: {
-      // Cuando naveguemos hacia la ruta "/", crearemos el Widget PrimeraPantalla
-      '/': (context) => PrimeraPantalla(),
-      // Cuando naveguemos hacia la ruta "/segunda", crearemos el Widget SegundaPantalla
-      '/segunda': (context) => SegundaPantalla(),
-    },
+    title: 'Navegacion basica',
+    home: PrimeraRuta(),
   ));
 }
 
-class PrimeraPantalla extends StatelessWidget {
+class PrimeraRuta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Primera Pantalla'),
+        title: Text('Primera ruta'),
       ),
       body: Center(
         child: RaisedButton(
-          child: Text('Pantalla de Inicio'),
+          child: Text('Abrir Ruta'),
           onPressed: () {
-            // Navega a la segunda pantalla usando una ruta con nombre
-            Navigator.pushNamed(context, '/segunda');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SegundaRuta()),
+            );
           },
         ),
       ),
@@ -35,18 +29,16 @@ class PrimeraPantalla extends StatelessWidget {
   }
 }
 
-class SegundaPantalla extends StatelessWidget {
+class SegundaRuta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("segunda Screen"),
+        title: Text("Segunda Ruta"),
       ),
       body: Center(
         child: RaisedButton(
           onPressed: () {
-            // Navega de regreso a la primera pantalla haciendo clic en la ruta actual
-            // fuera de la pila
             Navigator.pop(context);
           },
           child: Text('Regresar!'),
