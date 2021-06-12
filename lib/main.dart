@@ -1,13 +1,49 @@
 import 'package:flutter/material.dart';
-import 'pantalla1.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MaterialApp(
+    title: 'Navegacion Basica',
+    home: PrimeraRuta(),
+  ));
+}
 
-class MyApp extends StatelessWidget {
+class PrimeraRuta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: pantalla1(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Primera Ruta'),
+      ),
+      body: Center(
+        child: RaisedButton(
+          child: Text('Abrir Ruta'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SegundaRuta()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class SegundaRuta extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Segunda Ruta"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Regresar!'),
+        ),
+      ),
     );
   }
 }
